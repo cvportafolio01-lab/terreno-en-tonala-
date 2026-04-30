@@ -305,7 +305,6 @@
         <small class="text-muted">Abr 2026</small>
     </div>
 </section>
-<!-- Galería Terreno Tonalá -->
 <section id="galeria" class="gallery-section">
     <div class="container">
 
@@ -322,7 +321,7 @@
             <!-- Imagen 1 -->
             <div class="col-md-4 col-sm-6">
                 <div class="property-card plano-destacado">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#planoModal" data-img="images/tonala1.jpeg">
+                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#planoModal" data-img="images/tonala1.jpeg">
                         <img src="images/tonala1.jpeg" class="property-img">
                     </a>
                     <div class="property-overlay">
@@ -334,7 +333,7 @@
             <!-- Imagen 2 -->
             <div class="col-md-4 col-sm-6">
                 <div class="property-card plano-destacado">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#planoModal" data-img="images/tonala2.jpeg">
+                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#planoModal" data-img="images/tonala2.jpeg">
                         <img src="images/tonala2.jpeg" class="property-img">
                     </a>
                     <div class="property-overlay">
@@ -346,7 +345,7 @@
             <!-- Imagen 3 -->
             <div class="col-md-4 col-sm-6">
                 <div class="property-card plano-destacado">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#planoModal" data-img="images/tonala3.jpeg">
+                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#planoModal" data-img="images/tonala3.jpeg">
                         <img src="images/tonala3.jpeg" class="property-img">
                     </a>
                     <div class="property-overlay">
@@ -354,21 +353,36 @@
                     </div>
                 </div>
             </div>
-            <!-- Imagen 4 (Plano del terreno) -->
-<div class="col-md-4 col-sm-6">
-    <div class="property-card plano-destacado">
-        <a href="#" data-bs-toggle="modal" data-bs-target="#planoModal" data-img="images/plano2.jpeg">
-            <img src="images/plano2.jpeg" class="property-img">
-        </a>
-        <div class="property-overlay">
-            <span class="property-price">📐 Plano del terreno (14,000 m²)</span>
-        </div>
-    </div>
-</div>
+
+            <!-- Imagen 4 -->
+            <div class="col-md-4 col-sm-6">
+                <div class="property-card plano-destacado">
+                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#planoModal" data-img="images/plano2.jpeg">
+                        <img src="images/plano2.jpeg" class="property-img">
+                    </a>
+                    <div class="property-overlay">
+                        <span class="property-price">📐 Plano del terreno (14,000 m²)</span>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="planoModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content bg-dark border-0">
+
+      <div class="modal-body text-center p-0">
+        <img id="modalImage" src="" class="img-fluid w-100">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 
 
 
@@ -527,47 +541,37 @@
     <i class="bi bi-whatsapp"></i>
 </a>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-   
-
-
-<!-- Script para cambiar imagen -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* =========================
-       MODAL DE PLANO
-    ========================= */
-    const modal = document.getElementById('planoModal');
-    const imagen = document.getElementById('imagenModal');
+    const modal = document.getElementById("planoModal");
+    const modalImage = document.getElementById("modalImage");
 
-    if (modal && imagen) {
-        modal.addEventListener('show.bs.modal', function (event) {
-            const trigger = event.relatedTarget;
-            const ruta = trigger.getAttribute('data-img');
-            imagen.src = ruta;
-        });
-    }
+    if (!modal || !modalImage) return;
+
+    modal.addEventListener("show.bs.modal", function (event) {
+
+        const trigger = event.relatedTarget;
+
+        if (!trigger) return;
+
+        const imgSrc = trigger.getAttribute("data-img");
+
+        if (imgSrc) {
+            modalImage.src = imgSrc;
+        }
+
+    });
+
+    modal.addEventListener("hidden.bs.modal", function () {
+        modalImage.src = "";
+    });
 
 });
-
-
-/* =========================
-   VIDEO PLAY
-========================= */
-function playVideo() {
-    const video = document.getElementById("videoDesarrollo");
-    const button = document.querySelector(".play-button");
-
-    if (video) {
-        video.play();
-    }
-
-    if (button) {
-        button.style.display = "none";
-    }
-}
 </script>
+
 </body>
 
 </html>
